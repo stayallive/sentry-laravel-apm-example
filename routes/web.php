@@ -19,3 +19,20 @@ Route::view('/', 'welcome');
 Auth::routes();
 
 Route::get('/home', Controllers\Home::class)->name('home');
+Route::get('/home-without-name', Controllers\Home::class);
+Route::get('/home-using-closure', static function () {
+    return view('home');
+});
+
+Route::name('grouped.')->group(static function () {
+    Route::get('home-in-routegroup', Controllers\Home::class)->name('home');
+});
+
+Route::name('todo.')->prefix('todo')->group(static function () {
+    Route::view('create', 'todo.create')->name('create');
+    Route::post('create', Controllers\Todo\Create::class);
+
+    Route::delete('{id}/delete', Controllers\Todo\Delete::class)->name('delete');
+    Route::post('{id}/mark-as-finished', Controllers\Todo\MarkAsFinished::class)->name('mark-as-finished');
+    Route::post('{id}/mark-as-unfinished', Controllers\Todo\MarkAsUnfinished::class)->name('mark-as-unfinished');
+});
