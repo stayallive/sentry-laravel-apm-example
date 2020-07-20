@@ -6,7 +6,7 @@ You've come to the right place. This TODO application was built from the ground 
 
 If you are looking at this application to learn how to built an Laravel app, please don't. Some code in this is built to showcase APM features and is not how you should write your Laravel code.
 
-### Getting started
+## Getting started
 
 To start I expect you've installed Laravel before and know a little how it works so concepts as `composer` and `npm` should not sound new.
 
@@ -63,3 +63,20 @@ php artisan serve
 ```
 
 Nice, you should be greeted by a Laravel application and you should be able to register an account to get into the application (the registration is just to seed the database, all data stays on your machine and no e-mail validation is required).
+
+## Development
+
+Assuming you have [`sentry-laravel`](https://github.com/getsentry/sentry-laravel) checked out one level above this repository you can add the following to your `composer.json` to use that instead of installing it from GitHub:
+
+```json
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../sentry-laravel"
+        }
+    ],
+```
+
+Run `composer install` again to use the new repository path, it should symlink the directory which makes development of `sentry-laravel` pretty seamless.
+
+_Note: You might need to remove your `composer.lock` and `vendor` folder for this change to take effect!_
